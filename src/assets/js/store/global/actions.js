@@ -2,6 +2,7 @@
 
 export default {
     loginAction({commit}, loginCredentials) {
+        console.log(loginCredentials)
         commit('LOGIN_USER', loginCredentials)
     },
 

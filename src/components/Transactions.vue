@@ -1,13 +1,19 @@
 <template>
     <div>
+        <div @click = "logout">Logout</div>
         Transactions
-        <router-link :to="{ name: 'login' }">Login</router-link>
     </div>
 </template>
 
 <script>
     export default {
-        name: "Transactions"
+        name: "Transactions",
+        methods: {
+            logout() {
+                localStorage.setItem('login', '')
+                this.$router.push({ name: 'login' })
+            }
+        }
     }
 </script>
 

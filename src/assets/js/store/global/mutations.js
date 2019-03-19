@@ -3,7 +3,8 @@
 
 const mutations = {
     LOGIN_USER(state,  loginCredentials) {
-        state.login = loginCredentials
+        state.login.password = loginCredentials.password
+        state.login.email = loginCredentials.email
     }
 }
 export default mutations;

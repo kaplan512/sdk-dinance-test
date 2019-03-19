@@ -1,5 +1,8 @@
 const state = {
-    login: {}
+    login: {
+        password: '',
+        email: ''
+    }
 };
 
 export default state;

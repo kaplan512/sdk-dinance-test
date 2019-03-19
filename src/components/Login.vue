@@ -1,11 +1,10 @@
 <template>
     <div>
-        <router-link :to="{ name: 'transactions' }">Transactions</router-link>
-        Login
+        <h1>Login</h1>
         <form @submit.prevent="onSubmit">
-            <input type="password" placeholder="Password" v-model="form.password">
-            <input type="text" placeholder="Email" v-model="form.email">
-            <input type="submit">
+            <el-input type="password" placeholder="Password" v-model="form.password"></el-input>
+            <el-input type="text" placeholder="Email" v-model="form.email"></el-input>
+            <el-button type="primary">Login</el-button>
         </form>
     </div>
 </template>
@@ -26,9 +25,10 @@
             ...mapActions({loginAction: 'loginAction'}),
             onSubmit() {
                 if(this.form.password && this.form.email) {
-                    this.loginAction(this.form)
-                    this.form.email = ''
-                    this.form.password = ''
+                    let form = Object.assign(this.form, {})
+                    this.loginAction(form)
+                    localStorage.setItem('login', JSON.stringify(this.form))
+                    this.$router.push({ name: 'transactions' })
                 }
             }
         },
@@ -41,5 +41,11 @@
 </script>
 
 <style scoped>
-
+    form {
+        max-width: 500px;
+        margin: 15px auto 0;
+    }
+    form div {
+        margin-bottom: 10px;
+    }
 </style>
