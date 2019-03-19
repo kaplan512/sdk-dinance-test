@@ -19,7 +19,7 @@ export default [
         redirect: '/app/transactions'
     },
     {
-    path: '*',
+        path: '*',
         component: NotFound
     }
 ];

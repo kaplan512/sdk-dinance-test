@@ -1,10 +1,13 @@
 // import {api} from "../../assets/http";
 
 export default {
-    loginAction({commit}, loginCredentials) {
-        console.log(loginCredentials)
-        commit('LOGIN_USER', loginCredentials)
+    fetchFile({commit}) {
+        let file = require('../../../../../public/transactions')
+        commit('FETCH_DATA', file)
     },
+    sortData({commit}, type) {
+        commit('SORT_DATA', type)
+    }
 
     // fetchSchedule({commit}, params) {
     //     api('user.getSchedule', {}, {user_id: +params})

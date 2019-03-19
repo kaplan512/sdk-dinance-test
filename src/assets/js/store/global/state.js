@@ -1,7 +1,6 @@
 const state = {
-    login: {
-        password: '',
-        email: ''
+    data: {
+
     }
 };
 

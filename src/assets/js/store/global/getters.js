@@ -1,8 +1,8 @@
 import state from "./state";
 
 const getters = {
-    login() {
-        return state.login;
+    data() {
+        return state.data.transactions;
     },
 };
 
