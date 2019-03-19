@@ -8,13 +8,13 @@ import Element                      from 'element-ui'
 import                              'element-ui/lib/theme-chalk/index.css';
 import axios                        from 'axios'
 import VueAxios                     from 'vue-axios'
+import moment                       from 'moment'
 
 
 Vue.use(Vuex)
 Vue.use(VueRouter)
 Vue.use(Element)
 Vue.use(VueAxios, axios)
-
 
 Vue.config.productionTip = false
 

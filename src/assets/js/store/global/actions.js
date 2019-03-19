@@ -1,5 +1,3 @@
-// import {api} from "../../assets/http";
-
 export default {
     fetchFile({commit}) {
         let file = require('../../../../../public/transactions')
@@ -7,20 +5,15 @@ export default {
     },
     sortData({commit}, type) {
         commit('SORT_DATA', type)
-    }
-
-    // fetchSchedule({commit}, params) {
-    //     api('user.getSchedule', {}, {user_id: +params})
-    //         .then(response => {
-    //             commit('FETCH_SCHEDULE', response)
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         })
-    // },
-    //
-    // fetchChatMessages({commit}, messages) {
-    //     commit('FETCH_CHAT_MESSAGES', messages)
-    // },
+    },
+    filterByProperty({commit}, property) {
+        commit('FILTER_BY_PROPERTY', property)
+    },
+    setActivePage({commit}, page) {
+        commit('SET_ACTIVE_PAGE', page)
+    },
+    clearFilter({commit}) {
+        commit('CLEAR_FILTER')
+    },
 
 };

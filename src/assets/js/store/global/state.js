@@ -1,7 +1,7 @@
 const state = {
-    data: {
-
-    }
+    data: [],
+    dataCopy: [],
+    activePage: 0
 };
 
 export default state;

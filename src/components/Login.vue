@@ -24,7 +24,6 @@
             onSubmit() {
                 if(this.form.password && this.form.email) {
                     let form = Object.assign(this.form, {})
-                    this.loginAction(form)
                     localStorage.setItem('login', JSON.stringify(this.form))
                     this.form.password = ''
                     this.form.email = ''
