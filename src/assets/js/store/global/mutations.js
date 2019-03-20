@@ -19,7 +19,7 @@ const mutations = {
     FILTER_BY_PROPERTY(state, property) {
         let arr = state.dataCopy.slice()
         if(property.type === 'date') {
-            state.data = arr.filter(function(n) { return moment(n.date).isAfter(moment(property.value).subtract(0, 'days'))});
+            state.data = arr.filter((n) => { return moment(n.date).isAfter(moment(property.value).subtract(1, 'days'))});
         }
         else {
             state.data = arr.filter(word => word[property.type].toString().toLowerCase().indexOf(property.value) > -1);
