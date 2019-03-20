@@ -1,4 +1,3 @@
-// import Vue                          from 'vue';
 import moment from 'moment'
 
 const mutations = {
@@ -18,19 +17,12 @@ const mutations = {
             });
         }
         if(type === 'date') {
-            console.log('date')
-            state.data.sort(function(a,b){
-                // Turn your strings into dates, and then subtract them
-                // to get a value that is either negative, positive, or zero.
-                console.log(moment(a.date).format('YYYY MM DD'))
-                return moment(b.date).format('YYYY MM DD') - moment(a.date).format('YYYY MM DD');
-            });
+            state.data.sort((a,b) => moment.utc(a.date).diff(moment.utc(b.date)))
         }
         state.activePage = 0;
     },
     FILTER_BY_PROPERTY(state, property) {
         let arr = state.dataCopy.slice()
-        console.log(property)
         if(property.type === 'id') {
             state.data = arr.filter(word => word.id.indexOf(property.value) > -1);
         }
@@ -41,7 +33,7 @@ const mutations = {
             state.data = arr.filter(word => word.status.toLowerCase().indexOf(property.value) > -1);
         }
         if(property.type === 'date') {
-            state.data = arr.filter(word => word.date.toLowerCase().indexOf(property.value) > -1);
+            state.data = arr.filter(function(n) { return moment(n.date).isAfter(moment(property.value).subtract(0, 'days'))});
         }
 
     },

@@ -100,12 +100,6 @@
                 localStorage.setItem('login', '')
                 this.$router.push({ name: 'login' })
             },
-            // fetchData() {
-            //     Tried to make it work, but I couldn't make JSON work from local computer
-            //     this.axios.get('../transactions.json').then((response) => {
-            //         console.log(response)
-            //     })
-            // },
             clearFields() {
                 this.id = null
                 this.amount = null
@@ -134,8 +128,9 @@
             }
         },
         mounted() {
-            this.fetchFile()
-            moment(new Date())
+            if(!this.data.length) {
+                this.fetchFile()
+            }
         }
     }
 </script>
