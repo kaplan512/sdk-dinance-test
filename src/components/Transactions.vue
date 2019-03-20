@@ -3,6 +3,7 @@
         <div class = "logout" @click = "logout">Logout</div>
         <h1>Transactions table</h1>
         <div class = "wrapper">
+            <h2>Filters</h2>
             <div class = "filters">
                 <div>
                     <el-input @input = "filterByProperty({type: 'id', value: id})" class = "input" type="text" placeholder="Id" v-model="id"></el-input>
@@ -33,22 +34,39 @@
                     <el-button @click = "clearFields">Clear</el-button>
                 </div>
             </div>
-            <table v-if = "chunkedArray">
-                <tr>
-                    <td>Amount (<span @click = "sortData('amount')">Sort</span>)</td>
-                    <td>Date (<span @click = "sortData('date')">Sort</span>)</td>
-                    <td>Description</td>
-                    <td>Id (<span @click = "sortData('id')">Sort</span>)</td>
-                    <td>Status</td>
-                </tr>
-                <tr v-for = "rows in chunkedArray[activePage]">
-                    <td>{{rows.amount}}</td>
-                    <td>{{rows.date}}</td>
-                    <td>{{rows.description}}</td>
-                    <td>{{rows.id}}</td>
-                    <td>{{rows.status}}</td>
-                </tr>
-            </table>
+            <h2>Sort</h2>
+            <div class = "filters">
+                <el-button @click = "sortData('amount')">Amount</el-button>
+                <el-button @click = "sortData('date')">Date</el-button>
+                <el-button @click = "sortData('id')">Id</el-button>
+            </div>
+
+            <el-table
+                    v-if = "chunkedArray"
+                    :data="chunkedArray[activePage]"
+                    style="width: 100%">
+                <el-table-column
+                        prop="amount"
+                        label="Amount">
+                </el-table-column>
+                <el-table-column
+                        prop="date"
+                        label="Date">
+                </el-table-column>
+                <el-table-column
+                        prop="description"
+                        label="Description">
+                </el-table-column>
+                <el-table-column
+                        prop="id"
+                        label="Id">
+                </el-table-column>
+                <el-table-column
+                        prop="status"
+                        label="Status">
+                </el-table-column>
+            </el-table>
+
             <div v-if = "chunkedArray.length" class = "pagination">
                 <div v-if = "activePage !== 0" @click = "setActivePage(activePage-1)"><</div>
                 <div
@@ -67,7 +85,6 @@
 
 <script>
     import {mapGetters, mapActions} from 'vuex';
-    import moment from 'moment'
     export default {
         name: "Transactions",
         data() {
@@ -160,17 +177,6 @@
             }
             .active {
                 color: red;
-            }
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            td {
-                border: 1px solid black;
-                padding: 5px;
-                span {
-                    cursor: pointer;
-                }
             }
         }
         .filters {
